@@ -296,6 +296,13 @@
   dependencies:
     "@tanstack/query-core" "5.69.0"
 
+"@types/mathjs@^9.4.2":
+  version "9.4.2"
+  resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-9.4.2.tgz#beec20340d768171fed8331b08fb321d218ec6e1"
+  integrity sha512-GF5g1vJmvKdWIWsE53XX7EDAyCaZ9p6gaYm1xhlXn5JjrY/NJrOfJN3fBxS3wyZpVh3QqKoMkS2WjFwxWMHOTw==
+  dependencies:
+    mathjs "*"
+
 "@types/node@^20":
   version "20.17.25"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.17.25.tgz#3135ad0af2b46a7689aa5ffb3ecafe1f50171a29"
@@ -496,7 +503,7 @@ math-expression-evaluator@^2.0.6:
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-2.0.6.tgz#a33028e4d55e7dcfcca17a696738e1a25b8e2c22"
   integrity sha512-DRung1qNcKbgkhFeQ0fBPUFB6voRUMY7KyRyp1TRQ2v95Rp2egC823xLRooM1mDx1rmbkY7ym6ZWmpaE/VimOA==
 
-mathjs@^14.3.1:
+mathjs@*, mathjs@^14.3.1:
   version "14.3.1"
   resolved "https://registry.yarnpkg.com/mathjs/-/mathjs-14.3.1.tgz#d55f77c763dc0687e3bd82499693667d777b7fd3"
   integrity sha512-tgN2/TQXWVHegcl/Yw/Rkd/yhq0CagK5KnWmKUJ2/Cz/2JZoq4K2Ili9B3wZqvxaof7TVNoXbyKmA3CV3P9ZsA==

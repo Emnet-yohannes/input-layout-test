@@ -3,7 +3,6 @@
 import React, { useState, useRef, KeyboardEvent, ChangeEvent } from 'react';
 import { useFormulaStore } from '@/store';
 import { useQuery } from '@tanstack/react-query';
-import { evaluate } from 'mathjs';
 
 export interface Suggestion {
   name: string;
@@ -102,7 +101,7 @@ export default function FormulaInput() {
     const operatorMatch = inputValue.match(/[\+\-\*\/\^\(\)]$/);
     const operator = operatorMatch ? operatorMatch[0] : '';
     const tokenText = operator ? `${operator}${suggestion.name}` : suggestion.name;
-    addToken({ type: 'variable', text: tokenText, value: suggestion.value || 0 });
+    addToken({ type: 'variable', text: tokenText, value: typeof suggestion.value === 'number' ? suggestion.value : 0 });
     setInputValue('');
     inputRef.current?.focus();
   };
