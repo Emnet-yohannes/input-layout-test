@@ -42,7 +42,7 @@ export default function FormulaInput() {
   const { data: suggestions = [] } = useQuery({
     queryKey: ['suggestions', inputValue],
     queryFn: () => fetchSuggestions(inputValue),
-    enabled: tokenType === 'variable' && inputValue.trim().length > 0,
+    enabled: tokenType === 'variable',
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -141,12 +141,12 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
         onClick={() => inputRef.current?.focus()}
       >
         {tokens.map((token, index) => (
-            <>
+            <div key={index}>
              {
                 token?.type === 'variable' ?
           <div
             key={index}
-            className="relative bg-blue-500 text-white px-2 py-1 rounded flex items-center"
+            className="relative bg-[#964add] text-white px-2 py-1 rounded flex items-center"
           >
            
             <span>#{token.text}</span>
@@ -167,14 +167,14 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
           </div>:
           <div
           key={index}
-          className='px-2 py-1 rounded flex items-center '
+          className='px-[1px] py-1 rounded flex items-center '
         >
             <span>
           {token.text}
             </span>
         </div>
         }
-        </>
+        </div>
 
         ))}
         <input
@@ -188,14 +188,14 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
       </div>
 
       {suggestions.length > 0 && (
-        <div className="border border-t-0 max-w-2xl mx-auto bg-white">
+        <div className="rounded shadow-lg max-w-2xl mx-auto bg-white h-[200px] overflow-y-auto custom-scrollbar">
           {suggestions.map((sugg, index) => (
             <div
               key={index}
               onClick={() => handleSuggestionClick(sugg)}
-              className="p-2 cursor-pointer border-b border-gray-200 hover:bg-gray-100"
+              className="p-2 px-4 cursor-pointer  border-gray-200 hover:bg-gray-100"
             >
-              <div className="font-semibold">{sugg.name}</div>
+              <div className="font-semibold text-[#964add]">{sugg.name}</div>
               <div className="text-xs text-gray-500">{sugg.category}</div>
             </div>
           ))}
