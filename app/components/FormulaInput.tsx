@@ -24,7 +24,7 @@ const fetchSuggestions = async (query: string): Promise<Suggestion[]> => {
 };
 
 export default function FormulaInput() {
-  const { tokens, addToken, removeLastToken } = useFormulaStore();
+  const { tokens, addToken, removeLastToken ,removeTokenAt} = useFormulaStore();
   const [inputValue, setInputValue] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -86,13 +86,15 @@ export default function FormulaInput() {
     if (e.key === 'Enter' && inputValue!== ''  ) {
         console.log('Enter key pressed');
         const tokenType = identifyTokenType(inputValue.trim());
-        addToken({
-            type: tokenType,
-            text: inputValue.trim(),
-            value: tokenType === 'number' ? parseFloat(inputValue.trim()) : undefined,
-          });
-        setInputValue('');
-        calculateExpression();
+        if(tokenType !== 'variable'){
+            addToken({
+                type: tokenType,
+                text: inputValue.trim(),
+                value: tokenType === 'number' ? parseFloat(inputValue.trim()) : undefined,
+              });
+            setInputValue('');
+            calculateExpression();
+        }
     } else if (e.key === 'Backspace' && inputValue === '') {
       removeLastToken();
     }
@@ -157,10 +159,10 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
               ▼
             </button>
             {activeDropdown === index && (
-              <div className="absolute top-full right-0 bg-white text-black border rounded z-10 w-32 mt-1">
+              <div className="absolute top-full right-0 rounded shadow-lg bg-white text-black z-10 w-32 mt-1">
                 <ul className="list-none p-2 m-0">
                   <li className="py-1 cursor-pointer">Edit</li>
-                  <li className="py-1 cursor-pointer">Delete</li>
+                  <li className="py-1 cursor-pointer text-red-400" onClick={()=>removeTokenAt(index)}>Delete</li>
                 </ul>
               </div>
             )}
