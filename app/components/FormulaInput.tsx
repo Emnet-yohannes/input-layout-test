@@ -151,7 +151,7 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
                 token?.type === 'variable' ?
           <div
             key={index}
-            className="relative bg-[#964add] text-white px-2 py-1 rounded flex items-center"
+            className="relative bg-[#964add] mx-[2px] text-white px-2 py-1 rounded flex items-center"
           >
            
             <span>#{token.text}</span>
@@ -165,7 +165,7 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
               <div className="absolute top-full right-0 rounded shadow-lg bg-white text-black z-10 w-32 mt-1">
                 <ul className="list-none p-2 m-0">
                   <li className="py-1 cursor-pointer">Edit</li>
-                  <li className="py-1 cursor-pointer text-red-400" onClick={()=>removeTokenAt(index)}>Delete</li>
+                  <li className="py-1 cursor-pointer text-red-400" onClick={()=>{removeTokenAt(index);setActiveDropdown(null);}}>Delete</li>
                 </ul>
               </div>
             )}
@@ -208,7 +208,7 @@ expression = expression.replace(/\s*[+\-*/^()]\s*$/, '');
       )}
 
       <div className="mt-4 font-bold">
-        Result: {tokens.length ? calculateExpression() : 'N/A'}
+        Result: {tokens.length ? calculateExpression() : '0'}
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-// store.ts
 import { create } from 'zustand';
 
 export interface Token {
@@ -29,5 +28,5 @@ export const useFormulaStore = create<FormulaState>((set) => ({
   })),
   updateToken: (index, token) => set((state) => ({
     tokens: state.tokens.map((t, i) => i === index ? token : t)
-  }))
+  })),
 }));
