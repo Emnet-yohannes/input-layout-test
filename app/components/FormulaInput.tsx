@@ -62,20 +62,23 @@ export default function FormulaInput() {
     
         if (valueWithoutOperator.trim()) {
           const valueTokenType = identifyTokenType(valueWithoutOperator.trim());
-          addToken({
-            type: valueTokenType,
-            text: valueWithoutOperator.trim(),
-            value: valueTokenType === 'number' ? parseFloat(valueWithoutOperator.trim()) : undefined,
-          });
+          if(valueTokenType === 'number'){
+              addToken({
+                type: valueTokenType,
+                text: valueWithoutOperator.trim(),
+                value: valueTokenType === 'number' ? parseFloat(valueWithoutOperator.trim()) : undefined,
+              });
+              addToken({
+                type: 'operator',
+                text: operator,
+                value: undefined,
+              });
+          
+              setInputValue('');
+          }
         }
     
-        addToken({
-          type: 'operator',
-          text: operator,
-          value: undefined,
-        });
-    
-        setInputValue('');
+       
       } 
       else{
           setInputValue(e.target.value);

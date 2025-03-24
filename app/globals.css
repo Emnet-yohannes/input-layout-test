@@ -42,3 +42,34 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
+
+.insertion-point {
+  width: 2px;
+  height: 24px;
+  background: transparent;
+  transition: background-color 0.2s;
+  position: relative;
+}
+
+.insertion-point:hover,
+.insertion-point.active {
+  background: #964add;
+}
+
+.insertion-point::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  width: 4px;
+  height: 4px;
+  background: #964add;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.insertion-point:hover::after {
+  opacity: 1;
+}
